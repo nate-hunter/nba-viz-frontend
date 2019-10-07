@@ -1,9 +1,25 @@
-.App {
-  text-align: center;
+.nav-img>img {
+  height: 22px;
+  /* height: 7vmin; */
 }
 
-.App-logo {
-  height: 40vmin;
+.team-logo-list>img {
+  height: 20px;
+}
+
+.nav-color {
+  background-color: burlywood;
+  /* background-color: sandybrown; */
+}
+
+.team-list-container{
+  height: 100px;
+}
+
+
+/* DEFAULTS */ 
+.App {
+  text-align: center;
 }
 
 .App-header {
