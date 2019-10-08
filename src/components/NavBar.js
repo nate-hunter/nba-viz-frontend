@@ -26,7 +26,7 @@ class NavBar extends React.Component {
     render(){
         return(
             // <Container fluid>
-            <Navbar className="nav-color"  dark expand="md" >
+            <Navbar className="nav-color" dark expand="md" >
                 <NavbarBrand className="nav-img" tag={Link} to="https://www.nba.com"><img src={nbaLogo} alt="NBA Logo" /></NavbarBrand>
                 <NavbarBrand className="nav-img" tag={Link} to="https://www.basketball-reference.com/"><img src={bbrLogo} alt="BBall Ref Logo" /></NavbarBrand>
                 {/* <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
