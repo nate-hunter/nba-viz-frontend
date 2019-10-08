@@ -29,11 +29,7 @@ class TeamBarChart extends React.Component {
                     .paddingOuter(0.2);
 
                 const y = d3.scaleLinear()
-                    // .domain( [0, d3.max(data, (d,i) => d.playerContracts[i].contract["2019-2020"])])
-                    .domain( [0, d3.max(data, d => {
-                        debugger
-                        console.log("d", d)
-                    } )])
+                    .domain( [0, d3.max(data.playerContracts, (d,i) => parseInt(d.contract["2019-2020"]))])
                     .range([height, 0]);
 
                 const xAxis = d3.axisBottom(x);
@@ -70,36 +66,13 @@ class TeamBarChart extends React.Component {
 
                 //---------------------------USE DATA---------------------------------
                 svg.selectAll("rect")
-                    .data(data)
+                    .data(data.playerContracts)
                     .enter().append("rect")
                         .attr("class", "bar")
-                        // .attr("x", (d,i) => x(d.playerContracts[i].name))
-                        .attr("x", (d,i) => {
-                            console.log("d", d)
-                            x(d.playerContracts[i].name)})
+                        .attr("x", (d,i) => x(d.name))
                         .attr("width", x.bandwidth)
-                        .attr("y", (d,i) => y(d.playerContracts[i].contract["2019-2020"]))
-                        .attr("height", (d,i) => height - y(d.playerContracts[i].contract["2019-2020"]))
-
-
-
-
-
-                // const svg = canvas.append("svg")
-                //     .attr("width", 600)
-                //     .attr("height", 600)
-                
-                // const rect = svg.selectAll("rect")
-
-                // rect.data(data)
-                //     .enter()
-                //         .append("rect")
-                //         .attr("width", d => d.width)
-                //         .attr("height", d => d.height * 2)
-                //         .text( d => `[` + d + `]`)
-                //         .attr("fill", d => d.playerContracts.name )
-                //         .attr("y", d => 240 - (d.height * 2))
-                //         .attr("x", (d,i) => i * (d.width + 1));
+                        .attr("y", (d,i) => y(parseInt(d.contract["2019-2020"])))
+                        .attr("height", (d,i) => height - y(parseInt(d.contract["2019-2020"])))
 
 
 
