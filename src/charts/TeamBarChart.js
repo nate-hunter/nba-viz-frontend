@@ -36,7 +36,18 @@ class TeamBarChart extends React.Component {
                 const yAxis = d3.axisLeft(y);
 
                 //---------------------------TIP---------------------------------
+                const formatComma = d3.format(",");
 
+                const tip = d3Tip()
+                    .attr("class", "d3-tip")
+                    .offset([-2, 0])
+                    .direction("n")
+                    .html( d => {
+                        const mainHtml = `<div id='thumbnail'><h4 style='color:steelblue'>${d.name}</h3></div>` + 
+                            `<p>2019-2020: <span style='color:orangered'>$${formatComma(d.contract["2019-2020"])}</span></p>`
+
+                        return mainHtml;
+                    })
 
 
                 //---------------------------BUILD SVG---------------------------------
@@ -45,7 +56,7 @@ class TeamBarChart extends React.Component {
                     .append("g")
                     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-                // svg.call(tip);
+                svg.call(tip);
 
                 //---------------------------BUILD AXIS---------------------------------
                 svg.append("g")
@@ -73,7 +84,8 @@ class TeamBarChart extends React.Component {
                         .attr("width", x.bandwidth)
                         .attr("y", (d,i) => y(parseInt(d.contract["2019-2020"])))
                         .attr("height", (d,i) => height - y(parseInt(d.contract["2019-2020"])))
-
+                        .on('mouseover', tip.show)
+                        .on('mouseout', tip.hide)
 
 
 
